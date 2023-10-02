@@ -1,5 +1,5 @@
 import {Link, useParams} from 'react-router-dom';
-import posts from '../../constants/data.json';
+import posts from '../../constants/dataX231001zo.json';
 import formatDateString from '../../helpers/formatDateString.js';
 import {CaretLeft, Clock} from "@phosphor-icons/react";
 import './PostDetail.css';
