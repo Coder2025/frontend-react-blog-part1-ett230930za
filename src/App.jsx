@@ -7,11 +7,16 @@ import Overview from './pages/overviewPage/Overview.jsx';
 import PostDetail from './pages/postDetailPage/PostDetail.jsx';
 import NotFound from './pages/notFoundPage/NotFound.jsx';
 import logoMedium from './assets/logo-medium.png'
+import { useState } from "react";
+//import react from "react";
 
 function App() {
     const navigate = useNavigate();
+    const [blogData, setBlogData] = useState([]);
 
-// testData =======================================================================
+
+// =======================================================================================
+    // testData ==========================================================================
     async function testData(){
         try{
             const result = await axios.get("http://localhost:3000/posts");
@@ -87,7 +92,30 @@ function App() {
             console.log("response.statusText =", e.response.statusText); // response.statusText = "OK"
         }
     }
-    // =======================================================================
+    // testGetData =======================================================================
+    async function testGetData(){
+
+        try{
+            const result = await axios.get("http://localhost:3000/posts");
+            setBlogData(result.data)
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
+    // testShowData =======================================================================
+    async function testShowData(){
+        try{
+            console.log(blogData)
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+    // ===================================================================================
+    // ===================================================================================
+
     return (
         <>
             <nav className="main-navigation outer-content-container">
@@ -95,12 +123,14 @@ function App() {
                     <button type="button" className="main-navigation-logo-button" onClick={() => navigate('/')}>
                         <img src={logoMedium} alt="Logo that links to home page"/>
                     </button>
-
-                    {/*<button onClick={testData}>Klik!</button>*/}
-                    {/*<button onClick={testDataId}>KlikId</button>*/}
-                    {/*<button onClick={testDataNw}>KlikNw</button>*/}
-                    {/*<button onClick={testDataDelete}>KlikDelete</button>*/}
-                    {/*<button onClick={testDataWijzig}>KlikWijzig</button>*/}
+ 
+                    <button onClick={testData}>Klik!</button>
+                    <button onClick={testDataId}>KlikId</button>
+                    <button onClick={testDataNw}>KlikNw</button>
+                    <button onClick={testDataDelete}>KlikDelete</button>
+                    <button onClick={testDataWijzig}>KlikWijzig</button>
+                    <button onClick={testGetData}>KlikGetData</button>
+                    <button onClick={testShowData}>KlikShowData</button>
 
                     <ul className="main-navigation-links">
                         <li><Link to="/">Home</Link></li>
