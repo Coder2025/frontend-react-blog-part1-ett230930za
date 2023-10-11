@@ -112,7 +112,7 @@ Wanneer de gebruiker alle juiste gegevens heeft ingevuld en we deze informatie i
 Je kunt het JSON-bestand op de volgende manier importeren en gebruiken:
 
 ```jsx
-import posts from '../constants/data.json';
+import posts from '../constants/dataX231001zo.json';
 
 function BlogPost() {
   console.log(posts);

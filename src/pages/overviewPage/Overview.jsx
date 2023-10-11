@@ -1,11 +1,29 @@
-import './Overview.css';
-import posts from '../../constants/data.json';
+import "./Overview.css"
 import {Link} from 'react-router-dom';
+import {useEffect, useState} from "react";
+import axios from "axios";
+
 
 function Overview() {
+    const [posts,setPosts] = useState([]);
+
+    useEffect(() => {
+        void fetchPosts()
+    });
+    async function fetchPosts() {
+        try{
+            const response = await axios.get("http://localhost:3000/posts")
+            //console.log(response.data);
+            setPosts(response.data)
+        }
+        catch (e){
+            console.error(e)
+        }
+    }
     return (
         <section className="overview-section outer-content-container">
             <div className="inner-content-container">
+                <button onClick={fetchPosts}>Fetch Posts</button>
                 <h1>Bekijk alle {posts.length} posts op het platform</h1>
                 <ul className="post-list">
                     {posts.map((post) => {
